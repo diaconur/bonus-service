@@ -1,0 +1,96 @@
+{
+  "consumer": {
+    "name": "bonus-consumer"
+  },
+  "interactions": [
+    {
+      "description": "Get bonus call",
+      "key": "7ebcad15",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "I get bonus"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/bonus/getAllBonuses"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "bonusName": "MEGA",
+            "bonusType": "MEGA_BONUS",
+            "endTime": "2019-10-10",
+            "id": 1,
+            "startTime": "2019-10-10"
+          },
+          "contentType": "application/json; charset=UTF-8",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.bonusName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.bonusType": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.endTime": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.startTime": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.3.9"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "bonus-service"
+  }
+}
