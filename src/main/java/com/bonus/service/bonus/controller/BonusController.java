@@ -22,7 +22,7 @@ public class BonusController {
         bonusOperations.addBonus(bonus);
     }
 
-    @GetMapping("/getAllBonuses")
+    @GetMapping(value = "/getAllBonuses", produces = "application/json")
     public List<Bonus> getBonuses() {
         return bonusOperations.getAllBonuses();
     }
