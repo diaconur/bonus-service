@@ -80,6 +80,22 @@
                 <groupId>au.com.dius.pact.provider</groupId>
                 <artifactId>maven</artifactId>
                 <version>4.3.9</version>
+                <configuration>
+                    <pactBrokerUrl>${pact.broker.url}</pactBrokerUrl>
+                    <branchName>${branchName}</branchName>
+                    <buildUrl>${buildUrl}</buildUrl>
+                    <projectVersion>${buildId}</projectVersion>
+                    <pactBrokerUsername>${pactBrokerUsername}</pactBrokerUsername>
+                    <pactBrokerPassword>${pactBrokerPassword}</pactBrokerPassword>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
