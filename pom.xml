@@ -19,11 +19,12 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>au.com.dius.pact.provider</groupId>-->
-<!--            <artifactId>junit5</artifactId>-->
-<!--            <version>4.3.9</version>-->
-<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/au.com.dius.pact/provider -->
+        <dependency>
+            <groupId>au.com.dius.pact.provider</groupId>
+            <artifactId>junit5</artifactId>
+            <version>4.3.9</version>
+        </dependency>
         <dependency>
             <groupId>au.com.dius.pact.provider</groupId>
             <artifactId>junit5spring</artifactId>
@@ -75,18 +76,27 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <pact.verifier.publishResults>true</pact.verifier.publishResults>
+                        <pactbroker.host>http://localhost:8000/</pactbroker.host>
+                        <pactbroker.auth.username>pact_workshop</pactbroker.auth.username>
+                        <pactbroker.auth.password>pact_workshop</pactbroker.auth.password>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>au.com.dius.pact.provider</groupId>
                 <artifactId>maven</artifactId>
                 <version>4.3.9</version>
                 <configuration>
-                    <pactBrokerUrl>${pact.broker.url}</pactBrokerUrl>
-                    <branchName>${branchName}</branchName>
-                    <buildUrl>${buildUrl}</buildUrl>
-                    <projectVersion>${buildId}</projectVersion>
-                    <pactBrokerUsername>${pactBrokerUsername}</pactBrokerUsername>
-                    <pactBrokerPassword>${pactBrokerPassword}</pactBrokerPassword>
+                    <pactBrokerUrl>http://localhost:8000</pactBrokerUrl>
+<!--                    <branchName>${branchName}</branchName>-->
+<!--                    <buildUrl>${buildUrl}</buildUrl>-->
+<!--                    <projectVersion>${buildId}</projectVersion>-->
+                    <pactBrokerUsername>pact_workshop</pactBrokerUsername>
+                    <pactBrokerPassword>pact_workshop</pactBrokerPassword>
+                    <serviceProviders></serviceProviders>
                 </configuration>
                 <executions>
                     <execution>
