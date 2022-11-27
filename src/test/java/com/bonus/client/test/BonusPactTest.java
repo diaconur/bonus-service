@@ -2,15 +2,12 @@ package com.bonus.client.test;
 
 import au.com.dius.pact.consumer.MockServer;
 import au.com.dius.pact.consumer.dsl.DslPart;
-import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
+import au.com.dius.pact.consumer.dsl.PactDslJsonArray;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.V4Pact;
 import au.com.dius.pact.core.model.annotations.Pact;
-import com.bonus.client.test.dto.BonusResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,10 +19,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
 @SpringBootTest
 @ExtendWith(PactConsumerTestExt.class)
@@ -37,7 +32,7 @@ public class BonusPactTest {
     public V4Pact getBonus(PactDslWithProvider builder) throws Exception {
 
         //Method1 using DslPart from pact
-        DslPart bonusResponse1 = new PactDslJsonBody()
+        DslPart bonusResponse1 = PactDslJsonArray.arrayEachLike()
                 .integerType("id", 1)
                 .stringType("bonusName", "SUPER")
                 .stringType("bonusType", "MEGA_BONUS")
@@ -55,7 +50,7 @@ public class BonusPactTest {
                 .method("GET")
                 .willRespondWith()
                 .status(200)
-                .body("["+bonusResponse1+"]")
+                .body(bonusResponse1)
                 .toPact(V4Pact.class);
     }
 
