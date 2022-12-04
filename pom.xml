@@ -54,7 +54,7 @@
                     <pactBrokerUrl>http://localhost:8000/</pactBrokerUrl>
                     <pactBrokerUsername>pact_workshop</pactBrokerUsername>
                     <pactBrokerPassword>pact_workshop</pactBrokerPassword>
-                    <tags>getGitBranch(), 'test', 'prod'</tags>
+                    <tags>'test', 'prod'</tags>
                 </configuration>
             </plugin>
             <plugin>
