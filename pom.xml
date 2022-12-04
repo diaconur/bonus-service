@@ -74,48 +74,27 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <systemPropertyVariables>
                         <pact.verifier.publishResults>true</pact.verifier.publishResults>
-                        <pactbroker.host>http://localhost:8000/</pactbroker.host>
-                        <pactbroker.auth.username>pact_workshop</pactbroker.auth.username>
-                        <pactbroker.auth.password>pact_workshop</pactbroker.auth.password>
+                        <pact.provider.version>${project.version}</pact.provider.version>
                     </systemPropertyVariables>
+                    <includes>
+                        <include>VerifyContractTest.java</include>
+                    </includes>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>au.com.dius.pact.provider</groupId>
-                <artifactId>maven</artifactId>
-                <version>4.3.9</version>
-                <configuration>
-                    <pactBrokerUrl>http://localhost:8000</pactBrokerUrl>
-<!--                    <branchName>${branchName}</branchName>-->
-<!--                    <buildUrl>${buildUrl}</buildUrl>-->
-<!--                    <projectVersion>${buildId}</projectVersion>-->
-                    <pactBrokerUsername>pact_workshop</pactBrokerUsername>
-                    <pactBrokerPassword>pact_workshop</pactBrokerPassword>
-                    <serviceProviders></serviceProviders>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>publish</goal>
-                        </goals>
-                        <phase>verify</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
+             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

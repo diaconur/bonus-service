@@ -4,6 +4,7 @@ import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.State;
 import au.com.dius.pact.provider.junitsupport.VerificationReports;
+import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
 import au.com.dius.pact.provider.junitsupport.target.TestTarget;
 import au.com.dius.pact.provider.spring.junit5.MockMvcTestTarget;
@@ -31,9 +32,9 @@ import java.util.List;
 @VerificationReports
 @SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,classes = TestConfiguration.class)
 @Provider(value = "bonus-service")
-@PactFolder("pacts")
+//@PactFolder("pacts")
 @Slf4j
-//@PactBroker
+@PactBroker
 public class VerifyContractTest {
 
     @MockBean
@@ -61,7 +62,7 @@ public class VerifyContractTest {
         context.verifyInteraction();
     }
 
-    @State("I get bonus")
+    @State("I get all bonuses")
     void getAllBonuses() throws IOException {
 
         // Method1 using a builder
@@ -77,6 +78,6 @@ public class VerifyContractTest {
         Bonus bonusRequest = new ObjectMapper().readValue(myRequest, Bonus.class);
         log.info("Bonus is {}", bonusRequest.toString());
 
-        BDDMockito.doReturn(List.of(bonusRequest)).when(bonusController).getBonuses();
+        BDDMockito.doReturn(List.of(bonus)).when(bonusController).getBonuses();
     }
 }
