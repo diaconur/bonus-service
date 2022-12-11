@@ -25,3 +25,13 @@ services:
       PACT_BROKER_DATABASE_PASSWORD: password
       PACT_BROKER_DATABASE_HOST: postgres
       PACT_BROKER_DATABASE_NAME: postgres
+
+  jenkins_app:
+    image: jenkins/jenkins:lts-jdk11
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins:/var/jenkins_home
+volumes:
+  jenkins:
