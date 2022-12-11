@@ -51,11 +51,19 @@
                 <artifactId>maven</artifactId>
                 <version>4.3.9</version>
                 <configuration>
-                    <pactBrokerUrl>http://localhost:8000/</pactBrokerUrl>
+                    <pactBrokerUrl>http://broker_app:9292</pactBrokerUrl>
                     <pactBrokerUsername>pact_workshop</pactBrokerUsername>
                     <pactBrokerPassword>pact_workshop</pactBrokerPassword>
                     <tags>'test', 'prod'</tags>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
