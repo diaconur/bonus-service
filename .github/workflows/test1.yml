@@ -3,13 +3,16 @@ name: Bonus Workflow
 on: [push]
 
 jobs:
-    first_job:
+    checkout_job:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout Repo
           uses: actions/checkout@v4
 
-        - name: Setup Java
+    mvn_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: MVN Install
           uses: actions/setup-java@v4.7.0
           with:
             distribution: 'corretto'
@@ -20,6 +23,3 @@ jobs:
             pwd
             ls -la
             mvn clean install
-
-        - name: Read file
-          run: cat README.md
