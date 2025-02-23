@@ -9,17 +9,33 @@ jobs:
         - name: Checkout Repo
           uses: actions/checkout@v4
 
-    mvn_job:
+    mvn_build:
+        needs: checkout_job
         runs-on: ubuntu-latest
         steps:
-        - name: MVN Install
+        - name: Setup JDK
           uses: actions/setup-java@v4.7.0
           with:
             distribution: 'corretto'
             java-version: '8'
 
-        - name: MVN Check
+        - name: MVN Compie
           run: |
             pwd
             ls -la
-            mvn clean install
+            mvn clean compile
+    mvn_test:
+        runs-on: ubuntu-latest
+        needs: mvn_build
+        steps:
+        - name: Setup JDK
+          uses: actions/setup-java@v4.7.0
+          with:
+            distribution: 'corretto'
+            java-version: '8'
+
+        - name: MVN Test
+          run: |
+            pwd
+            ls -la
+            mvn test
