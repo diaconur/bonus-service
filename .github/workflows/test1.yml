@@ -16,7 +16,7 @@ jobs:
             java-version: '8'
 
         - name: MVN Check
-          run: pwd && ls -la && mvn -version
+          run: pwd && ls -la && mvn clean install
 
         - name: Read file
           run: cat README.md
