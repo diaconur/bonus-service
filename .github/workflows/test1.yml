@@ -1,0 +1,14 @@
+name: Bonus Workflow
+
+on: [push]
+
+jobs:
+    compile:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Welcome message
+          run: echo "Welcome to bonus service"
+        - name: List files
+          run: ls -la
+        - name: Read file
+          run: cat README.md
